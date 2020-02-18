@@ -11,17 +11,25 @@ async function githubData() {
 
         // parse data received from server
         let convertedData = await responseGitHub.json();
-        // console.log(convertedData);
+        console.log(convertedData);
 
         // traverse repos
         for (let i = 0; i < convertedData.length; i++) {
             console.log(convertedData[i].name);
 
+            let repoName = convertedData[i].name;
+            let description = convertedData[i].description;
+
             // add all repos name to webpage 
             let p = document.createElement("p");
-            p.innerHTML = convertedData[i].name;
+            p.innerHTML = repoName;
             container.appendChild(p);
+
+            let span = document.createElement("span");
+            span.innerHTML = description;
+            p.appendChild(span);
         }
+
     }
     catch (err) {
         console.log(err);
